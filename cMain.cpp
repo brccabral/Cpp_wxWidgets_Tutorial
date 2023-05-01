@@ -1,10 +1,7 @@
 #include "cMain.h"
 
-// wxBEGIN_EVENT_TABLE(cMain, wxFrame)
-
-//     EVT_BUTTON(BUTTON1_ID, cMain::OnButtonClicked)
-
-// wxEND_EVENT_TABLE();
+wxBEGIN_EVENT_TABLE(cMain, wxFrame)
+wxEND_EVENT_TABLE();
 
 cMain::cMain() : wxFrame(nullptr, wxID_ANY, "wxWidgets Video", wxPoint(30, 30), wxSize(800, 600))
 {
@@ -18,6 +15,8 @@ cMain::cMain() : wxFrame(nullptr, wxID_ANY, "wxWidgets Video", wxPoint(30, 30), 
             int index = y * nFieldHeight + x;
             btn[index] = new wxButton(this, 10000 + index);
             grid->Add(btn[index], 1, wxEXPAND | wxALL);
+
+            btn[index]->Bind(wxEVT_COMMAND_BUTTON_CLICKED, &cMain::OnButtonClicked, this);
         }
     }
     this->SetSizer(grid);
@@ -31,5 +30,11 @@ cMain::~cMain()
 
 void cMain::OnButtonClicked(wxCommandEvent &evt)
 {
+    // evt.GetId() = Button ID
+
+    // get coordinate of button in field array
+    int x = (evt.GetId() - 10000) % nFieldWidth;
+    int y = (evt.GetId() - 10000) / nFieldWidth;
+
     evt.Skip(); // * tells that the event has been handled
 }

@@ -13,7 +13,7 @@ public:
     int nFieldHeight = 10;
     wxButton **btn;
 
-    // wxDECLARE_EVENT_TABLE();
+    wxDECLARE_EVENT_TABLE();
 
     void OnButtonClicked(wxCommandEvent &evt);
 };
