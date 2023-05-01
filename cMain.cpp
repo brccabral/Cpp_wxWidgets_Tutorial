@@ -10,6 +10,8 @@ cMain::cMain() : wxFrame(nullptr, wxID_ANY, "wxWidgets Video", wxPoint(30, 30), 
 
     nField = new int[nFieldWidth * nFieldHeight];
 
+    wxFont font(24, wxFONTFAMILY_DEFAULT, wxFONTSTYLE_NORMAL, wxFONTWEIGHT_BOLD, false);
+
     for (int x = 0; x < nFieldWidth; x++)
     {
         for (int y = 0; y < nFieldHeight; y++)
@@ -19,6 +21,7 @@ cMain::cMain() : wxFrame(nullptr, wxID_ANY, "wxWidgets Video", wxPoint(30, 30), 
             grid->Add(btn[index], 1, wxEXPAND | wxALL);
 
             btn[index]->Bind(wxEVT_COMMAND_BUTTON_CLICKED, &cMain::OnButtonClicked, this);
+            btn[index]->SetFont(font);
         }
     }
     this->SetSizer(grid);
