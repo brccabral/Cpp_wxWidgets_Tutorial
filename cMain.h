@@ -16,4 +16,9 @@ public:
     wxDECLARE_EVENT_TABLE();
 
     void OnButtonClicked(wxCommandEvent &evt);
+
+    int *nField = nullptr; // * mines positions
+    bool bFirstClick = true; // * check if user has started game
+
+    void ResetGame();
 };
