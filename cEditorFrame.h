@@ -12,4 +12,11 @@ public:
 
 private:
     cCanvas *m_Canvas = nullptr;
+
+    wxStatusBar *m_StatusBar = nullptr;
+    wxSlider *m_ZoomSlider = nullptr;
+
+    void OnZoomChange(wxCommandEvent &evt);
+    
+    wxDECLARE_EVENT_TABLE();
 };
