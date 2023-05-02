@@ -17,7 +17,7 @@ wxCoord cCanvas::OnGetRowHeight(size_t row) const
     return wxCoord(m_nPixelSize);
 }
 
-wxCoord cCanvas::OnGetColumnHeight(size_t row) const
+wxCoord cCanvas::OnGetColumnWidth(size_t row) const
 {
     return wxCoord(m_nPixelSize);
 }

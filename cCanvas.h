@@ -17,5 +17,5 @@ private:
     int m_nPixelSize = 8;
 
     virtual wxCoord OnGetRowHeight(size_t row) const;
-    virtual wxCoord OnGetColumnHeight(size_t row) const;
+    virtual wxCoord OnGetColumnWidth(size_t row) const;
 };
