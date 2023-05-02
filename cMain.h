@@ -12,6 +12,9 @@ public:
 
 private:
     wxMenuBar *m_MenuBar = nullptr;
+    // * typically is used to add buttons like "Save", "Copy/Paste"
+    // * we use to show the color palette.
+    wxToolBar *m_ToolBar = nullptr;
 
     wxDECLARE_EVENT_TABLE();
 
