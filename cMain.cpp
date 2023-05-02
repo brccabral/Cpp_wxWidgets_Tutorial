@@ -81,10 +81,27 @@ void cMain::OnMenuNew(wxCommandEvent &evt)
 
 void cMain::OnMenuOpen(wxCommandEvent &evt)
 {
+    wxFileDialog dlg(this, "Open olcSprite File", "", "", ".spr Files (*.spr)|*.spr", wxFD_OPEN | wxFD_FILE_MUST_EXIST);
+    if (dlg.ShowModal() == wxID_OK)
+    {
+        cEditorFrame *f = new cEditorFrame(this, dlg.GetPath());
+        f->Open(dlg.GetPath());
+        f->Show();
+    }
+    evt.Skip();
 }
 
 void cMain::OnMenuSave(wxCommandEvent &evt)
 {
+    if (GetActiveChild() != nullptr)
+    {
+        wxFileDialog dlg(this, "Save olcSprite File", "", "", ".spr Files (*.spr)|*.spr", wxFD_SAVE | wxFD_OVERWRITE_PROMPT);
+        if (dlg.ShowModal() == wxID_OK)
+        {
+            ((cEditorFrame *)this->GetActiveChild())->Save(dlg.GetPath());
+        }
+    }
+    evt.Skip();
 }
 
 void cMain::OnMenuExit(wxCommandEvent &evt)

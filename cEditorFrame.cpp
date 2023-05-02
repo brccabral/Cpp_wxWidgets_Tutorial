@@ -33,3 +33,49 @@ void cEditorFrame::SetColour(int c)
 {
     m_Canvas->SetColor(c);
 }
+
+bool cEditorFrame::Open(wxString sFileName)
+{
+    if (!sprBase.Load(sFileName.wc_str()))
+        return false;
+
+    delete[] m_pSprite;
+    m_pSprite = new unsigned char[sprBase.nWidth * sprBase.nHeight]{0};
+
+    for (int i = 0; i < sprBase.nWidth; i++)
+    {
+        for (int j = 0; j < sprBase.nHeight; j++)
+        {
+            wchar_t glyph = sprBase.GetGlyph(i, j);
+            short colour = sprBase.GetColour(i, j);
+            if (glyph == L' ')
+                m_pSprite[j * sprBase.nWidth + i] = 16;
+            else
+                m_pSprite[j * sprBase.nWidth + i] = colour & 0x000F;
+        }
+    }
+    m_Canvas->SetSpriteData(sprBase.nHeight, sprBase.nWidth, m_pSprite);
+    return true;
+}
+
+bool cEditorFrame::Save(wxString sFileName)
+{
+    for (int i = 0; i < sprBase.nWidth; i++)
+    {
+        for (int j = 0; j < sprBase.nHeight; j++)
+        {
+            short colour = m_pSprite[j * sprBase.nWidth + i];
+            if (colour == 16)
+            {
+                sprBase.SetColour(i, j, 0);
+                sprBase.SetGlyph(i, j, L' ');
+            }
+            else
+            {
+                sprBase.SetColour(i, j, colour);
+                sprBase.SetGlyph(i, j, 0x2588);
+            }
+        }
+    }
+    return sprBase.Save(sFileName.wc_str());
+}

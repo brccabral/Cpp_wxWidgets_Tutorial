@@ -171,6 +171,9 @@ public:
     void SetCanvasPixelSize(int p);
     void SetColour(int c);
 
+    bool Open(wxString sFileName);
+    bool Save(wxString sFileName);
+
 private:
     cCanvas *m_Canvas = nullptr;
 
