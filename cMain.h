@@ -2,6 +2,8 @@
 
 #include <wx/wx.h>
 
+#include "cEditorFrame.h"
+
 class cMain : public wxMDIParentFrame
 {
 public:

@@ -1,11 +1,11 @@
 #include "cMain.h"
 
 wxBEGIN_EVENT_TABLE(cMain, wxMDIParentFrame)
-EVT_MENU(10001, cMain::OnMenuNew)
-EVT_MENU(10002, cMain::OnMenuOpen)
-EVT_MENU(10003, cMain::OnMenuSave)
-EVT_MENU(10004, cMain::OnMenuExit)
-wxEND_EVENT_TABLE();
+    EVT_MENU(10001, cMain::OnMenuNew)
+        EVT_MENU(10002, cMain::OnMenuOpen)
+            EVT_MENU(10003, cMain::OnMenuSave)
+                EVT_MENU(10004, cMain::OnMenuExit)
+                    wxEND_EVENT_TABLE();
 
 cMain::cMain() : wxMDIParentFrame(nullptr, wxID_ANY, "wxWidgets Video", wxPoint(30, 30), wxSize(800, 600))
 {
@@ -30,6 +30,9 @@ cMain::~cMain()
 
 void cMain::OnMenuNew(wxCommandEvent &evt)
 {
+    cEditorFrame *f = new cEditorFrame(this, "Test");
+    f->Show();
+    evt.Skip();
 }
 
 void cMain::OnMenuOpen(wxCommandEvent &evt)

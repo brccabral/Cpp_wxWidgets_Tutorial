@@ -3,7 +3,7 @@ project(VideowxWdgets)
 
 include(GNUInstallDirs)
 
-add_executable(wxExample cApp.cpp cMain.cpp)
+add_executable(wxExample cApp.cpp cMain.cpp cEditorFrame.cpp)
 install(TARGETS wxExample)
 
 if(WIN32)
