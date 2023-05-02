@@ -169,6 +169,7 @@ public:
     bool New(int r, int c);
 
     void SetCanvasPixelSize(int p);
+    void SetColour(int c);
 
 private:
     cCanvas *m_Canvas = nullptr;

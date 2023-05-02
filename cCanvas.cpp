@@ -107,3 +107,8 @@ void cCanvas::SetSpriteData(int rows, int columns, unsigned char *pSprite)
     m_pSprite = pSprite;
     this->SetRowColumnCount(rows, columns);
 }
+
+void cCanvas::SetColor(int c)
+{
+    m_nColour = c;
+}

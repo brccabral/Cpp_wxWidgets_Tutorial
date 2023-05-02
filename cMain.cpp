@@ -58,9 +58,9 @@ cMain::cMain() : wxMDIParentFrame(nullptr, wxID_ANY, "wxWidgets Video", wxPoint(
 
     m_ToolBar->Realize();
 
-    m_MainStatusBar = this->CreateStatusBar(2);// * 2 regions
-    m_MainStatusBar->SetStatusText(wxString("Main"), 1);// * text, region
-    m_ZoomSlider = new wxSlider(m_MainStatusBar, 20001, 8, 1, 32);// * parent, ID, default value, min, max
+    m_MainStatusBar = this->CreateStatusBar(2);                    // * 2 regions
+    m_MainStatusBar->SetStatusText(wxString("Main"), 1);           // * text, region
+    m_ZoomSlider = new wxSlider(m_MainStatusBar, 20001, 8, 1, 32); // * parent, ID, default value, min, max
 }
 
 cMain::~cMain()
@@ -93,13 +93,17 @@ void cMain::OnMenuExit(wxCommandEvent &evt)
 
 void cMain::OnSelectColour(wxCommandEvent &evt)
 {
+    // * colour is from palette toolbar buttons
+    // * evt.GetId() = button id
+    int colour = evt.GetId() - 10100;
+    if (GetActiveChild() != nullptr)
+        ((cEditorFrame *)this->GetActiveChild())->SetColour(colour);
 }
 
 void cMain::OnZoomChange(wxCommandEvent &evt)
 {
     m_MainStatusBar->SetStatusText(wxString("Zoom: ") << m_ZoomSlider->GetValue(), 1); // * text, region
-    cEditorFrame *active_editor = (cEditorFrame *)this->GetActiveChild();
-    if (active_editor != nullptr)
-        active_editor->SetCanvasPixelSize(m_ZoomSlider->GetValue());
+    if (GetActiveChild() != nullptr)
+        ((cEditorFrame *)this->GetActiveChild())->SetCanvasPixelSize(m_ZoomSlider->GetValue());
     evt.Skip();
 }

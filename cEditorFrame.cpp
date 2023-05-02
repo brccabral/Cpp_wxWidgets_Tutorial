@@ -28,3 +28,8 @@ void cEditorFrame::SetCanvasPixelSize(int p)
 {
     m_Canvas->SetPixelSize(p);
 }
+
+void cEditorFrame::SetColour(int c)
+{
+    m_Canvas->SetColor(c);
+}

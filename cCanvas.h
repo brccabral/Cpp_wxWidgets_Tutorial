@@ -11,12 +11,14 @@ public:
 
     void SetPixelSize(int n);
     void SetSpriteData(int rows, int columns, unsigned char *pSprite);
+    void SetColor(int c);
 
 private:
     wxDECLARE_EVENT_TABLE();
 
     int m_nPixelSize = 8;
     unsigned char *m_pSprite = nullptr;
+    int m_nColour = 0;
     
     wxColour palette[16];
 
