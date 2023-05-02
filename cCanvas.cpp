@@ -71,6 +71,10 @@ void cCanvas::OnDraw(wxDC &dc)
 
     dc.SetPen(pen);
 
+    // * don't draw pixel boundaries if zoom too small
+    if (m_nPixelSize <= 4)
+        dc.SetPen(*wxTRANSPARENT_PEN);
+
     // * show grid of cells
     for (int y = s.GetRow(); y < e.GetRow(); y++)
     {
