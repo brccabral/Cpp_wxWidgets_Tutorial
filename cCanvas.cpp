@@ -6,7 +6,8 @@
 
 wxBEGIN_EVENT_TABLE(cCanvas, wxHVScrolledWindow)
     EVT_PAINT(cCanvas::OnPaint)
-        wxEND_EVENT_TABLE();
+        EVT_LEFT_DOWN(cCanvas::OnMouseLefDown)
+            wxEND_EVENT_TABLE();
 
 cCanvas::cCanvas(wxWindow *parent)
     : wxHVScrolledWindow(parent, wxID_ANY)
@@ -111,4 +112,17 @@ void cCanvas::SetSpriteData(int rows, int columns, unsigned char *pSprite)
 void cCanvas::SetColor(int c)
 {
     m_nColour = c;
+}
+
+void cCanvas::OnMouseLefDown(wxMouseEvent &evt)
+{
+    // * the event position is relative to window, not counting the offset
+    // * if we have moved the canvas
+    wxPosition s = GetVisibleBegin();
+    int canvas_y = (evt.GetY() / m_nPixelSize + s.GetRow());
+    int canvas_x = (evt.GetX() / m_nPixelSize + s.GetCol());
+    m_pSprite[canvas_y * this->GetColumnCount() + canvas_x] = m_nColour;
+    this->Refresh(false);
+
+    evt.Skip();
 }

@@ -27,4 +27,5 @@ private:
 
     void OnDraw(wxDC &dc);
     void OnPaint(wxPaintEvent &evt);
+    void OnMouseLefDown(wxMouseEvent &evt);
 };
