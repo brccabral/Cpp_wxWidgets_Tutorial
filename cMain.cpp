@@ -42,4 +42,6 @@ void cMain::OnMenuSave(wxCommandEvent &evt)
 
 void cMain::OnMenuExit(wxCommandEvent &evt)
 {
+    Close();
+    evt.Skip();
 }
