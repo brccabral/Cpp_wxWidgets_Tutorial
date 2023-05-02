@@ -9,6 +9,7 @@ public:
     ~cMain();
 
 private:
+    wxMenuBar *m_MenuBar = nullptr;
 
     wxDECLARE_EVENT_TABLE();
 
