@@ -11,7 +11,11 @@ public:
     
     wxDECLARE_EVENT_TABLE();
 
+    void SetPixelSize(int n);
+
 private:
+    int m_nPixelSize = 8;
+
     virtual wxCoord OnGetRowHeight(size_t row) const;
     virtual wxCoord OnGetColumnHeight(size_t row) const;
 };

@@ -14,10 +14,18 @@ cCanvas::~cCanvas()
 
 wxCoord cCanvas::OnGetRowHeight(size_t row) const
 {
-    return wxCoord(0);
+    return wxCoord(m_nPixelSize);
 }
 
 wxCoord cCanvas::OnGetColumnHeight(size_t row) const
 {
-    return wxCoord(0);
+    return wxCoord(m_nPixelSize);
+}
+
+void cCanvas::SetPixelSize(int n)
+{
+    m_nPixelSize = n;
+    wxVarHScrollHelper::RefreshAll(); // * horizontal scroll
+    wxVarVScrollHelper::RefreshAll(); // * vertical scroll
+    Refresh();
 }
