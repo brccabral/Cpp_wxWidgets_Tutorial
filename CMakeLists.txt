@@ -12,8 +12,14 @@ if(WIN32)
 find_package(wxWidgets REQUIRED)
 include(${wxWidgets_USE_FILE})
 target_link_libraries(wxExample PRIVATE ${wxWidgets_LIBRARIES})
+
+message("CMAKE_BUILD_TYPE ${CMAKE_BUILD_TYPE}")
 # https://cmake.org/cmake/help/latest/prop_tgt/WIN32_EXECUTABLE.html
+if(${CMAKE_BUILD_TYPE} STREQUAL "Release")
 set_target_properties(wxExample PROPERTIES WIN32_EXECUTABLE $<CONFIG:Release>)
+else()
+set_target_properties(wxExample PROPERTIES WIN32_EXECUTABLE $<CONFIG:Debug>)
+endif()
 
 else()
 
