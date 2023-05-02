@@ -14,6 +14,23 @@ cCanvas::cCanvas(wxWindow *parent)
     SetRowColumnCount(40, 40);
     // * tell widget that we are going to draw on it, not the wxWdiget library
     SetBackgroundStyle(wxBG_STYLE_PAINT);
+
+    palette[0] = wxColour(0, 0, 0);
+    palette[1] = wxColour(0, 0, 128);
+    palette[2] = wxColour(0, 128, 0);
+    palette[3] = wxColour(0, 128, 128);
+    palette[4] = wxColour(128, 0, 0);
+    palette[5] = wxColour(128, 0, 128);
+    palette[6] = wxColour(128, 128, 0);
+    palette[7] = wxColour(192, 192, 192);
+    palette[8] = wxColour(128, 128, 128);
+    palette[9] = wxColour(0, 0, 255);
+    palette[10] = wxColour(0, 255, 0);
+    palette[11] = wxColour(0, 255, 255);
+    palette[12] = wxColour(255, 0, 0);
+    palette[13] = wxColour(255, 0, 255);
+    palette[14] = wxColour(255, 255, 0);
+    palette[15] = wxColour(255, 255, 255);
 }
 
 cCanvas::~cCanvas()

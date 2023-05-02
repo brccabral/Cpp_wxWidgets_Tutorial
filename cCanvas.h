@@ -15,6 +15,8 @@ private:
     wxDECLARE_EVENT_TABLE();
 
     int m_nPixelSize = 8;
+    
+    wxColour palette[16];
 
     virtual wxCoord OnGetRowHeight(size_t row) const;
     virtual wxCoord OnGetColumnWidth(size_t row) const;
