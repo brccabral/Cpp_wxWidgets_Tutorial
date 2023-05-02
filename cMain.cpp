@@ -5,7 +5,8 @@ wxBEGIN_EVENT_TABLE(cMain, wxMDIParentFrame)
         EVT_MENU(10002, cMain::OnMenuOpen)
             EVT_MENU(10003, cMain::OnMenuSave)
                 EVT_MENU(10004, cMain::OnMenuExit)
-                    wxEND_EVENT_TABLE();
+                    EVT_SLIDER(20001, cMain::OnZoomChange)
+                        wxEND_EVENT_TABLE();
 
 cMain::cMain() : wxMDIParentFrame(nullptr, wxID_ANY, "wxWidgets Video", wxPoint(30, 30), wxSize(800, 600))
 {
@@ -56,6 +57,10 @@ cMain::cMain() : wxMDIParentFrame(nullptr, wxID_ANY, "wxWidgets Video", wxPoint(
     m_ToolBar->AddControl(b);
 
     m_ToolBar->Realize();
+
+    m_MainStatusBar = this->CreateStatusBar(2);// * 2 regions
+    m_MainStatusBar->SetStatusText(wxString("Main"), 1);// * text, region
+    m_ZoomSlider = new wxSlider(m_MainStatusBar, 20001, 8, 1, 32);// * parent, ID, default value, min, max
 }
 
 cMain::~cMain()
@@ -88,4 +93,13 @@ void cMain::OnMenuExit(wxCommandEvent &evt)
 
 void cMain::OnSelectColour(wxCommandEvent &evt)
 {
+}
+
+void cMain::OnZoomChange(wxCommandEvent &evt)
+{
+    m_MainStatusBar->SetStatusText(wxString("Zoom: ") << m_ZoomSlider->GetValue(), 1); // * text, region
+    cEditorFrame *active_editor = (cEditorFrame *)this->GetActiveChild();
+    if (active_editor != nullptr)
+        active_editor->SetCanvasPixelSize(m_ZoomSlider->GetValue());
+    evt.Skip();
 }

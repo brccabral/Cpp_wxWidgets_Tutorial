@@ -167,16 +167,14 @@ public:
     ~cEditorFrame();
 
     bool New(int r, int c);
+
+    void SetCanvasPixelSize(int p);
+
 private:
     cCanvas *m_Canvas = nullptr;
 
-    wxStatusBar *m_StatusBar = nullptr;
-    wxSlider *m_ZoomSlider = nullptr;
-
     olcSprite sprBase;
     unsigned char *m_pSprite = nullptr;
-
-    void OnZoomChange(wxCommandEvent &evt);
 
     wxDECLARE_EVENT_TABLE();
 };
