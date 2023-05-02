@@ -22,5 +22,7 @@ private:
     void OnMenuOpen(wxCommandEvent &evt);
     void OnMenuSave(wxCommandEvent &evt);
     void OnMenuExit(wxCommandEvent &evt);
+    
+    void OnSelectColour(wxCommandEvent &evt);
 
 };
