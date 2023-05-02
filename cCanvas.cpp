@@ -1,12 +1,19 @@
 #include "cCanvas.h"
 
+#include <wx/dcclient.h>
+#include <wx/dcmemory.h>
+#include <wx/dcbuffer.h>
+
 wxBEGIN_EVENT_TABLE(cCanvas, wxHVScrolledWindow)
-    wxEND_EVENT_TABLE();
+    EVT_PAINT(cCanvas::OnPaint)
+        wxEND_EVENT_TABLE();
 
 cCanvas::cCanvas(wxWindow *parent)
     : wxHVScrolledWindow(parent, wxID_ANY)
 {
     SetRowColumnCount(40, 40);
+    // * tell widget that we are going to draw on it, not the wxWdiget library
+    SetBackgroundStyle(wxBG_STYLE_PAINT);
 }
 
 cCanvas::~cCanvas()
@@ -29,4 +36,27 @@ void cCanvas::SetPixelSize(int n)
     wxVarHScrollHelper::RefreshAll(); // * horizontal scroll
     wxVarVScrollHelper::RefreshAll(); // * vertical scroll
     Refresh();
+}
+
+void cCanvas::OnDraw(wxDC &dc)
+{
+    dc.Clear();
+
+    wxBrush brush = dc.GetBrush(); // * how
+    wxPen pen = dc.GetPen();       // * boundary
+
+    pen.SetStyle(wxPENSTYLE_LONG_DASH);
+    pen.SetColour(wxColour(200, 200, 200));
+
+    dc.SetPen(pen);
+    dc.SetBrush(brush);
+    dc.DrawRectangle(20, 20, 200, 200);
+}
+
+void cCanvas::OnPaint(wxPaintEvent &evt)
+{
+    wxBufferedPaintDC dc(this); // * DC = Device Context
+    this->PrepareDC(dc);
+    this->OnDraw(dc);
+    evt.Skip();
 }

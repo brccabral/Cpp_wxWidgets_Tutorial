@@ -8,14 +8,17 @@ class cCanvas : public wxHVScrolledWindow
 public:
     cCanvas(wxWindow *parent);
     ~cCanvas();
-    
-    wxDECLARE_EVENT_TABLE();
 
     void SetPixelSize(int n);
 
 private:
+    wxDECLARE_EVENT_TABLE();
+
     int m_nPixelSize = 8;
 
     virtual wxCoord OnGetRowHeight(size_t row) const;
     virtual wxCoord OnGetColumnWidth(size_t row) const;
+
+    void OnDraw(wxDC &dc);
+    void OnPaint(wxPaintEvent &evt);
 };
