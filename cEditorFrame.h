@@ -52,7 +52,7 @@ private:
     }
 
 public:
-    void SetGlyph(int x, int y, wchar_t c)
+    void SetGlyph(int x, int y, unsigned short c)
     {
         if (x < 0 || x >= nWidth || y < 0 || y >= nHeight)
             return;
@@ -68,7 +68,7 @@ public:
             m_Colours[y * nWidth + x] = c;
     }
 
-    wchar_t GetGlyph(int x, int y)
+    unsigned short GetGlyph(int x, int y)
     {
         if (x < 0 || x >= nWidth || y < 0 || y >= nHeight)
             return L' ';
@@ -84,7 +84,7 @@ public:
             return m_Colours[y * nWidth + x];
     }
 
-    wchar_t SampleGlyph(float x, float y)
+    unsigned short SampleGlyph(float x, float y)
     {
         int sx = (int)(x * (float)nWidth);
         int sy = (int)(y * (float)nHeight - 1.0f);
@@ -119,7 +119,7 @@ public:
         f.write((char *)&nWidth, sizeof(int));
         f.write((char *)&nHeight, sizeof(int));
         f.write((char *)m_Colours, sizeof(short) * nWidth * nHeight);
-        f.write((char *)m_Glyphs, sizeof(wchar_t) * nWidth * nHeight);
+        f.write((char *)m_Glyphs, sizeof(unsigned short) * nWidth * nHeight);
 
         f.close();
 
@@ -152,7 +152,7 @@ public:
         Create(nWidth, nHeight);
 
         f.read((char *)m_Colours, sizeof(short) * nWidth * nHeight);
-        f.read((char *)m_Glyphs, sizeof(wchar_t) * nWidth * nHeight);
+        f.read((char *)m_Glyphs, sizeof(unsigned short) * nWidth * nHeight);
 
         f.close();
 

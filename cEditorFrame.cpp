@@ -46,7 +46,7 @@ bool cEditorFrame::Open(wxString sFileName)
     {
         for (int j = 0; j < sprBase.nHeight; j++)
         {
-            wchar_t glyph = sprBase.GetGlyph(i, j);
+            unsigned short glyph = sprBase.GetGlyph(i, j);
             short colour = sprBase.GetColour(i, j);
             if (glyph == L' ')
                 m_pSprite[j * sprBase.nWidth + i] = 16;
