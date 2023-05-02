@@ -2,23 +2,14 @@
 
 #include <wx/wx.h>
 
-class cMain : public wxFrame
+class cMain : public wxMDIParentFrame
 {
 public:
     cMain();
     ~cMain();
 
-public:
-    int nFieldWidth = 10;
-    int nFieldHeight = 10;
-    wxButton **btn;
+private:
 
     wxDECLARE_EVENT_TABLE();
 
-    void OnButtonClicked(wxCommandEvent &evt);
-
-    int *nField = nullptr; // * mines positions
-    bool bFirstClick = true; // * check if user has started game
-
-    void ResetGame();
 };
