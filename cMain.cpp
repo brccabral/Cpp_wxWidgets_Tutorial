@@ -65,6 +65,9 @@ cMain::~cMain()
 void cMain::OnMenuNew(wxCommandEvent &evt)
 {
     cEditorFrame *f = new cEditorFrame(this, "Test");
+
+    f->New(16, 16);
+
     f->Show();
     evt.Skip();
 }

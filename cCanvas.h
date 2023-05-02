@@ -10,11 +10,13 @@ public:
     ~cCanvas();
 
     void SetPixelSize(int n);
+    void SetSpriteData(int rows, int columns, unsigned char *pSprite);
 
 private:
     wxDECLARE_EVENT_TABLE();
 
     int m_nPixelSize = 8;
+    unsigned char *m_pSprite = nullptr;
     
     wxColour palette[16];
 

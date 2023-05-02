@@ -24,3 +24,13 @@ void cEditorFrame::OnZoomChange(wxCommandEvent &evt)
     m_Canvas->SetPixelSize(m_ZoomSlider->GetValue());
     evt.Skip();
 }
+
+bool cEditorFrame::New(int r, int c)
+{
+    delete[] m_pSprite;
+    m_pSprite = new unsigned char[r * c]{0};
+    m_Canvas->SetSpriteData(r, c, m_pSprite);
+    sprBase = olcSprite(c, r);
+
+    return false;
+}

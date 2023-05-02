@@ -166,6 +166,7 @@ public:
     cEditorFrame(wxMDIParentFrame *parent, wxString sName);
     ~cEditorFrame();
 
+    bool New(int r, int c);
 private:
     cCanvas *m_Canvas = nullptr;
 

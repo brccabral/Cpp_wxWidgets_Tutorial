@@ -75,6 +75,19 @@ void cCanvas::OnDraw(wxDC &dc)
     {
         for (int x = s.GetCol(); x < e.GetCol(); x++)
         {
+            int colour = m_pSprite[y * this->GetColumnCount() + x];
+            if (colour < 16)
+            {
+                brush.SetColour(palette[colour]);
+                brush.SetStyle(wxBRUSHSTYLE_SOLID);
+            }
+            else
+            {
+                // * ALPHA pattern
+                brush.SetColour(wxColour(0, 0, 0));
+                brush.SetStyle(wxBrushStyle::wxBRUSHSTYLE_CROSSDIAG_HATCH);
+            }
+
             dc.SetBrush(brush);
             dc.DrawRectangle(x * m_nPixelSize, y * m_nPixelSize, m_nPixelSize, m_nPixelSize);
         }
@@ -87,4 +100,10 @@ void cCanvas::OnPaint(wxPaintEvent &evt)
     this->PrepareDC(dc);
     this->OnDraw(dc);
     evt.Skip();
+}
+
+void cCanvas::SetSpriteData(int rows, int columns, unsigned char *pSprite)
+{
+    m_pSprite = pSprite;
+    this->SetRowColumnCount(rows, columns);
 }
