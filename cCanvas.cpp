@@ -45,12 +45,23 @@ void cCanvas::OnDraw(wxDC &dc)
     wxBrush brush = dc.GetBrush(); // * how
     wxPen pen = dc.GetPen();       // * boundary
 
+    wxPosition s = GetVisibleBegin();
+    wxPosition e = GetVisibleEnd();
+
     pen.SetStyle(wxPENSTYLE_LONG_DASH);
     pen.SetColour(wxColour(200, 200, 200));
 
     dc.SetPen(pen);
-    dc.SetBrush(brush);
-    dc.DrawRectangle(20, 20, 200, 200);
+
+    // * show grid of cells
+    for (int y = s.GetRow(); y < e.GetRow(); y++)
+    {
+        for (int x = s.GetCol(); x < e.GetCol(); x++)
+        {
+            dc.SetBrush(brush);
+            dc.DrawRectangle(x * m_nPixelSize, y * m_nPixelSize, m_nPixelSize, m_nPixelSize);
+        }
+    }
 }
 
 void cCanvas::OnPaint(wxPaintEvent &evt)
