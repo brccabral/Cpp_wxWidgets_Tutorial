@@ -6,6 +6,7 @@ wxBEGIN_EVENT_TABLE(cCanvas, wxHVScrolledWindow)
 cCanvas::cCanvas(wxWindow *parent)
     : wxHVScrolledWindow(parent, wxID_ANY)
 {
+    SetRowColumnCount(40, 40);
 }
 
 cCanvas::~cCanvas()
