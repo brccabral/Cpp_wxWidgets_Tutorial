@@ -9,13 +9,14 @@ cEditorFrame::cEditorFrame(wxMDIParentFrame *parent, wxString sName)
 {
     m_Canvas = new cCanvas(this);
 
-    m_StatusBar = this->CreateStatusBar(2, wxSTB_DEFAULT_STYLE, wxID_ANY); // * 2 regions
-    m_ZoomSlider = new wxSlider(m_StatusBar, 20001, 8, 1, 32);             // * parent, ID, default value, min, max
+    m_StatusBar = this->CreateStatusBar(2, wxSTB_DEFAULT_STYLE, wxID_ANY);         // * 2 regions
+    m_ZoomSlider = new wxSlider(m_StatusBar, 20001, 8, 1, 32);                     // * parent, ID, default value, min, max
     m_StatusBar->SetStatusText(wxString("Zoom: ") << m_ZoomSlider->GetValue(), 1); // * text, region
 }
 
 cEditorFrame::~cEditorFrame()
 {
+    delete[] m_pSprite;
 }
 
 void cEditorFrame::OnZoomChange(wxCommandEvent &evt)
