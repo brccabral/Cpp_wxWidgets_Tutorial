@@ -49,11 +49,13 @@ cMain::cMain() : wxMDIParentFrame(nullptr, wxID_ANY, "wxWidgets Video", wxPoint(
     {
         wxButton *b = new wxButton(m_ToolBar, 10100 + i, "", wxDefaultPosition, wxSize(40, 24), 0);
         b->SetBackgroundColour(palette[i]);
-        b->Connect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(cMain::OnSelectColour), nullptr, nullptr);
+        // b->Connect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(cMain::OnSelectColour), nullptr, nullptr);
+        b->Bind(wxEVT_BUTTON, &cMain::OnSelectColour, this);
         m_ToolBar->AddControl(b);
     }
     wxButton *b = new wxButton(m_ToolBar, 10100 + 16, "ALPHA", wxDefaultPosition, wxDefaultSize, 0);
-    b->Connect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(cMain::OnSelectColour), nullptr, nullptr);
+    // b->Connect(wxEVT_COMMAND_BUTTON_CLICKED, wxCommandEventHandler(cMain::OnSelectColour), nullptr, nullptr);
+    b->Bind(wxEVT_BUTTON, &cMain::OnSelectColour, this);
     m_ToolBar->AddControl(b);
 
     m_ToolBar->Realize();
