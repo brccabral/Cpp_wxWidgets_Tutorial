@@ -13,4 +13,9 @@ private:
 
     wxDECLARE_EVENT_TABLE();
 
+    void OnMenuNew(wxCommandEvent &evt);
+    void OnMenuOpen(wxCommandEvent &evt);
+    void OnMenuSave(wxCommandEvent &evt);
+    void OnMenuExit(wxCommandEvent &evt);
+
 };
