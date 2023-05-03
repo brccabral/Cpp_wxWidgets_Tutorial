@@ -27,8 +27,10 @@ public:
 
     ~olcSprite()
     {
-        delete[] m_Glyphs;
-        delete[] m_Colours;
+        if (m_Glyphs != nullptr)
+            delete[] m_Glyphs;
+        if (m_Colours != nullptr)
+            delete[] m_Colours;
     }
 
     int nWidth = 0;
@@ -128,8 +130,10 @@ public:
 
     bool Load(std::wstring sFile)
     {
-        delete[] m_Glyphs;
-        delete[] m_Colours;
+        if (m_Glyphs != nullptr)
+            delete[] m_Glyphs;
+        if (m_Colours != nullptr)
+            delete[] m_Colours;
         nWidth = 0;
         nHeight = 0;
 
@@ -177,7 +181,7 @@ public:
 private:
     cCanvas *m_Canvas = nullptr;
 
-    olcSprite sprBase;
+    olcSprite *sprBase = nullptr;
     unsigned char *m_pSprite = nullptr;
 
     wxDECLARE_EVENT_TABLE();
