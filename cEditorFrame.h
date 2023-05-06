@@ -184,5 +184,11 @@ private:
     olcSprite *sprBase = nullptr;
     unsigned char *m_pSprite = nullptr;
 
+#ifdef _WIN32
+    wxStatusBar *m_StatusBar = nullptr;
+    wxSlider *m_ZoomSlider = nullptr;
+    void OnZoomChange(wxCommandEvent &evt);
+#endif
+
     wxDECLARE_EVENT_TABLE();
 };

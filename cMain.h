@@ -15,8 +15,11 @@ private:
     // * typically is used to add buttons like "Save", "Copy/Paste"
     // * we use to show the color palette.
     wxToolBar *m_ToolBar = nullptr;
+#ifndef _WIN32
     wxStatusBar *m_MainStatusBar = nullptr;
     wxSlider *m_ZoomSlider = nullptr;
+    void OnZoomChange(wxCommandEvent &evt);
+#endif
 
     wxDECLARE_EVENT_TABLE();
 
@@ -26,6 +29,5 @@ private:
     void OnMenuExit(wxCommandEvent &evt);
 
     void OnSelectColour(wxCommandEvent &evt);
-    
-    void OnZoomChange(wxCommandEvent &evt);
+
 };
