@@ -3,3 +3,5 @@ build_dir/
 build_win/
 install_dir/
 install_win/
+.kdev4/
+*.kdev4
